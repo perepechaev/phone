@@ -27,16 +27,17 @@ function phone_find($text){
 function phone_normalization($phone, $area = '495'){
 
     $phone = preg_replace('/[^\d\w\+]/u', '', $phone);
+
+    if (strlen($phone) === 10 - strlen($area)){
+        $phone = $area . $phone;
+    }
+
     $phone = preg_replace('/^\+?7|8(\d{10})/', '8\\1', $phone);
 
     if (preg_match('/^\d{6,}/u', $phone, $match) == false){
         return false;
     }
     $phone = $match[0];
-
-    if (strlen($phone) === 10 - strlen($area)){
-        $phone = $area . $phone; 
-    }
 
     if (strlen($phone) === 10){
         $phone = '8' . $phone;

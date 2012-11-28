@@ -44,13 +44,14 @@ $patterns = array(
     'дом(8453)551720 СОТ 9271344022'    => '88453551720;89271344022',
     '8007755505'                        => '88007755505',
     '495-370-04-66 / 8-903-564-49-91'   => '84953700466;89035644991',
+    '7256000'                           => '84957256000',
 );
 
 $result = array();
 
 foreach ($patterns as $phone => $expect){
 
-	$result = phone_find($phone);
+    $result = phone_find($phone);
 
     if ( $result !== $expect){
         $result = var_export($result, true);
