@@ -57,8 +57,8 @@ function phone_normalization($phone, $area = '495'){
         $phone = '8' . $phone;
     }
 
-    if (preg_match('/^(8\d{10})[^\d]?/', $phone, $match) === 1){
-        return $match[1];
+    if (preg_match('/^((8|9|98)(\d{10}))[^\d]?$/', $phone, $match) === 1){
+        return '8' . $match[3];
     }
 
     return false;
