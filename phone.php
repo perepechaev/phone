@@ -9,13 +9,27 @@
 function phone_find($text){
     $list   = preg_split('/[а-яa-z;,\:\+\/]/ui', $text);
 
+    if (count($list) === 1){
+        $result = phone_normalization($text);
+
+        if ($result){
+            return $result;
+        }
+
+        // we can get at least two phone
+        if (strlen($text) > 13){
+            $list = explode(" ", $text);
+        }
+    }
+
     $result = '';
     foreach ($list as $value){
         $result = rtrim($result, ';');
         $result .= ';' . phone_normalization($value);
     }
     $result = trim($result, ';');
-	return $result;
+
+    return $result;
 }
 
 /**
